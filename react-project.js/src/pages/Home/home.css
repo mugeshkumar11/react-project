@@ -1,0 +1,19 @@
+.container{
+    width: 87%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.picture, img{
+ width: 50%;
+ height: 50%;
+}
+.btn{
+    display: flex;
+    justify-content: space-around;
+}
+.picture{
+    display: block;
+    justify-content: space-between;
+    width: 100%;
+}
