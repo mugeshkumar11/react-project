@@ -1,19 +1,11 @@
 .container{
     width: 87%;
     margin: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.picture, img{
- width: 50%;
- height: 50%;
-}
-.btn{
-    display: flex;
-    justify-content: space-around;
 }
 .picture{
-    display: block;
+    display:flex;
+    width: 33.33%;
+    height: auto;
     justify-content: space-between;
-    width: 100%;
+    margin-top: 50px;
 }

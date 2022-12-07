@@ -2,10 +2,20 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./home.css";
-import { Button } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActions } from "@mui/material";
+import Pagination from './Pagination';
+// import Pagination from "@mui/material";
+
 const Home = () => {
   const Navigate = useNavigate();
   const [todos, settodos] = useState([]);
+  const [currentpage, setcurrentpage] = useState(1);
+  const [postperpage, setpostperpage] = useState(11);
   useEffect(() => {
     fetchto();
   }, []);
@@ -16,32 +26,56 @@ const Home = () => {
     console.log("rest", json);
     settodos(json);
   };
-
- 
+  const lastpostindex = currentpage * postperpage;
+  const firstpostindex = lastpostindex - postperpage;
+  const currentpost = todos.slice(firstpostindex, lastpostindex);
 
   return (
-    <div>
-      {todos.map((item, index) => {
-        return (
-          <div className="container">
+    <div className="user" >
+
+      <div className="container">
+      
+        {currentpost.map((item, index) => {
+          return (
             
-            <div className="picture" key={index}>
-              <h2>{item.mission_name}</h2>
-              <img src={item.links.mission_patch} />
-              <h3>{item.details}</h3>
-              <br></br>
-              <div className="btn">
-                <a href={item.links.wikipedia}>
-                  <Button variant="contained">Wikipedia</Button>
-                </a>
-                <a href={""}>
-                  <Button variant="contained">MoreDetail</Button>
-                </a>
+            <div
+              className="picture"
+              key={index}
+              style={{ display: "inline-block" }}
+              
+            >
+              <div className={"homeflex"} style={{ textAlign: "left" }} >
+                <Card sx={{ maxWidth: 350 }} >
+                  
+                  <CardMedia
+                    component="img"
+                    height="auto"
+                    image={item.links.mission_patch}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {item.mission_name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {/* <a href={item.details}>
+                    <Button size="small">wiki</Button>
+                  </a> */}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <a href={item.links.wikipedia}>
+                      <Button size="small">wikipedia</Button>
+                    </a>
+                  </CardActions>
+                </Card>
               </div>
             </div>
-          </div>
-        );
-      })}
+            
+          );
+          
+        })}
+        <Pagination count={10} color="secondary" totalposts = {todos.length} postperpage={postperpage} setcurrentpage={setcurrentpage} currentpage={currentpage} />
+      </div>
     </div>
   );
 };
