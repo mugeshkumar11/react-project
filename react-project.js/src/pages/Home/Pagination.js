@@ -1,18 +1,19 @@
 import React from 'react'
+import { Pagination } from '@mui/material';
 
-const Pagination = ({totalposts,postperpage,setcurrentpage,currentpage}) => {
-     page = [];
+
+const Paginat = ({totalposts,postperpage,setcurrentpage}) => {
+   let  page = [];
     for (let i=1; i<= Math.ceil(totalposts/postperpage); i++){
         page.push(i)
     }
   return (
-    <div>
+    <div> 
         {
-            page.map((page, index)=>{
+            page.map((pages, index)=>{
                 return(
-                    <div>
-                    {/* <button key={index} onClick={()=> setcurrentpage(page)}>{page}</button> */}
-                    </div>
+                    <Pagination count={10} color="secondary" key={index} onClick={()=> setcurrentpage(pages)} />
+                    // <Pagination  >{}</button> 
                 )
             })
         }
@@ -20,4 +21,4 @@ const Pagination = ({totalposts,postperpage,setcurrentpage,currentpage}) => {
   )
 }
 
-export default Pagination
+export default Paginat

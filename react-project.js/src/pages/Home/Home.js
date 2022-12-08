@@ -2,20 +2,20 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./home.css";
-import { Button, Pagination } from "@mui/material";
+import { Button} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActions } from "@mui/material";
-import Pagination from './Pagination';
-// import Pagination from "@mui/material";
+import Paginat from "./Pagination"
+
 
 const Home = () => {
   const Navigate = useNavigate();
   const [todos, settodos] = useState([]);
   const [currentpage, setcurrentpage] = useState(1);
-  const [postperpage, setpostperpage] = useState(11);
+  const [postperpage, setpostperpage] = useState(10);
   useEffect(() => {
     fetchto();
   }, []);
@@ -74,7 +74,7 @@ const Home = () => {
           );
           
         })}
-        <Pagination count={10} color="secondary" totalposts = {todos.length} postperpage={postperpage} setcurrentpage={setcurrentpage} currentpage={currentpage} />
+        <Paginat  totalposts = {todos.length} postperpage={postperpage} setcurrentpage={setcurrentpage} />
       </div>
     </div>
   );
